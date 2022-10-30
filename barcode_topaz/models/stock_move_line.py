@@ -6,14 +6,6 @@ from odoo import api, fields, models
 class StockMoveLine(models.Model):
     _inherit = 'stock.move.line'
     topaz_m_expirationdate=fields.Char(string='Expiration Date')
-    def __init__(self, pool, cr):
-        super().__init__(pool, cr)
-        self.lot_id = None
-        self.move_id = None
-        self.picking_id = None
-        self.product_uom_id = None
-        self.product_id = None
-
     @api.onchange('product_id', 'product_uom_id', 'lot_name')
     def _onchange_product_id(self):
         if self.product_id:
